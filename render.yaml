@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: darglobal-chatbot
+    env: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_MODEL
+        value: nvidia/nemotron-3.5-lightning:free,nvidia/nemotron-3.5-super-vl:free,baidu/ernie-5.5-flash-preview:free,nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free

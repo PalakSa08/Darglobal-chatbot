@@ -1,0 +1,23 @@
+To: careers@darglobal.co.uk
+Subject: Application – Junior AI Engineer (Applied AI) – Palak Saxena
+
+Dear HR Team,
+
+Thank you for considering my application for the Junior AI Engineer – Applied AI role. Please find the requested details and my completed assignment below.
+
+Current location: [City, Country]
+Current package: [amount]
+Expected package: [amount]
+Notice period: [e.g. Immediate / 30 days]
+
+Technical Assignment
+- Live chatbot URL: [PASTE YOUR URL]
+- Source code: [PASTE GITHUB REPO LINK]
+- Approach: public pages of DarGlobal and Wasalt were scraped (robots.txt respected), chunked, and indexed with BM25. The chatbot retrieves the top relevant chunks and answers with a free OpenRouter model, grounded in that context with source links. The app is containerised with Docker and deployed on [Hugging Face Spaces / Render].
+
+LinkedIn: https://www.linkedin.com/in/palak-saxena-417121251
+GitHub: https://github.com/PalakSa08
+
+Kind regards,
+Palak Saxena
+7830228728 | palaksaxenaps2004@gmail.com

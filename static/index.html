@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DarGlobal & Wasalt Assistant</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--card:#f3f1ec;--me:#1a1a1a;--mefg:#fff;--line:#ddd}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--fg:#eee;--card:#222;--me:#c9a96a;--mefg:#111;--line:#333}}
+*{box-sizing:border-box}body{margin:0;font:16px system-ui;background:var(--bg);color:var(--fg);display:flex;flex-direction:column;height:100dvh}
+header{padding:14px 16px;border-bottom:1px solid var(--line);font-weight:600}
+#log{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:10px 14px;border-radius:14px;background:var(--card);white-space:pre-wrap}
+.me{align-self:flex-end;background:var(--me);color:var(--meg,var(--meg));color:var(--meg,#fff)}
+.src{font-size:12px;opacity:.7;margin-top:6px;word-break:break-all}
+footer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+input{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+button{padding:0 18px;border:0;border-radius:10px;background:var(--fg);color:var(--bg);font:inherit}
+</style></head><body>
+<header>DarGlobal & Wasalt Assistant</header>
+<div id="log"><div class="m">Hi! Ask me about DarGlobal projects or Wasalt listings and services.</div></div>
+<footer><input id="q" placeholder="Ask a question…" autofocus><button id="go">Send</button></footer>
+<script>
+const log=document.getElementById('log'),q=document.getElementById('q');let hist=[];
+function add(t,c,src){const d=document.createElement('div');d.className='m '+c;d.textContent=t;
+ if(src&&src.length){const s=document.createElement('div');s.className='src';s.textContent='Sources: '+src.slice(0,3).join(' · ');d.appendChild(s)}
+ log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+async function send(){const t=q.value.trim();if(!t)return;q.value='';add(t,'me');const w=add('Thinking…','');
+ try{const r=await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t,history:hist})});
+ const j=await r.json();w.remove();add(j.answer,'',j.sources);hist.push({role:'user',content:t},{role:'assistant',content:j.answer})}
+ catch(e){w.textContent='Error, please retry.'}}
+document.getElementById('go').onclick=send;q.onkeydown=e=>{if(e.key==='Enter')send()};
+</script></body></html>
